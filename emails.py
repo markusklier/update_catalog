@@ -12,12 +12,15 @@ def generate(sender, recipient, subject, body, attachment_path):
     message['Subject'] = subject
     message.set_content(body)
 
-    attachment_filename = os.path.basename(attachment_path)
-    mime_type, _  = mimetypes.guess.type(attachment_path)
-    mime_type, mime_subtype = mime_type.split('/', 1)
+    if attachment_path != None:
+        attachment_filename = os.path.basename(attachment_path)
+        mime_type, _  = mimetypes.guess.type(attachment_path)
+        mime_type, mime_subtype = mime_type.split('/', 1)
 
-    with open(attachment_path, 'rb' as ap:
-        message.add_attachment(ap.read(), maintype=mime_type, subtype=mime_subtype, filename=attachment_filename)
+        with open(attachment_path, 'rb' as ap:
+            message.add_attachment(ap.read(), maintype=mime_type, subtype=mime_subtype, filename=attachment_filename)
+    else:
+        pass
 
     return message
 

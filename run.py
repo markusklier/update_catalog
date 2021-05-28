@@ -4,7 +4,7 @@ import os
 import requests
 import json
 
-url = 'http://[linux-instance-external-IP]/fruits'
+url = 'http://{}/fruits'.format(os.environ.get('USER')
 description_files = '/supplier-data/descriptions/'
 
 for file in description_files:

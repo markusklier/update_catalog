@@ -6,7 +6,7 @@ import reports
 import emails
 
 
-def process_data():
+def process_data(description_files):
 
     data = []
     for item in description_files:
@@ -26,7 +26,7 @@ def main():
     reports.generate_report('/tmp/processed.pdf', title, str(paragraph_data))
 
     message = emails.generate('automation@example.com',  "{}@example.com".format(os.environ.get('USER')), 'Upload Completed - Online Fruit Store', email_text, '/tmp/processed.pdf')
-
+    emails.send(message)
 
 if __name__ == "__main__":
         main()
